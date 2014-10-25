@@ -41,11 +41,11 @@ test.data.activity$Activity=as.factor(test.data.activity$Activity)
 #recoding the factor levels of "activity" (1,2,3,4,5) using plyr package
 library(plyr)
 training.data.activity$Activity=revalue(training.data.activity$Activity,c("1"="Walking","2"="Walking Upstairs","3"="Walking Downstairs",
-                                                                 "4"="Sitting","5"="Standing","6"="Laying"))
+                                                                          "4"="Sitting","5"="Standing","6"="Laying"))
 
 
 test.data.activity$Activity=revalue(test.data.activity$Activity,c("1"="Walking","2"="Walking Upstairs","3"="Walking Downstairs",
-                                                                          "4"="Sitting","5"="Standing","6"="Laying"))
+                                                                  "4"="Sitting","5"="Standing","6"="Laying"))
 
 
 # QUESTION 1 - merging the subject number datasets  & activity datasets with the respective training/test dataset
@@ -83,7 +83,7 @@ combined.data.final=cbind(combined.data[,1],combined.data[,2],mean.columns.only,
 names(combined.data.final)=c("Subject","Activity",mean.names[1:46],std.names[1:33])
 
 #writing out the combined.data into a file
-write.table(combined.data.final,"combined.txt",sep="",col.names=TRUE)
+write.table(combined.data.final,"combined.txt",sep="",col.names=TRUE,row.names=FALSE)
 
 #QUESTION 5 -creating independent, tidy dataset : Average values for each variable  for each activity*subject combination
 #achieve this using the aggregate command
@@ -91,7 +91,7 @@ write.table(combined.data.final,"combined.txt",sep="",col.names=TRUE)
 tidy.dataset=aggregate(combined.data.final[,3:81],by=list(combined.data.final$Subject,combined.data.final$Activity),FUN=mean,na.rm=TRUE)
 
 #providing column names for the tidy.dataset
-names(tidy.dataset)=c("Subject","Activity",mean.names[3:46],std.names[1:33])
+names(tidy.dataset)=c("Subject","Activity",mean.names,std.names)
 
 # writing the tidy dataset to a text file
 write.table(tidy.dataset,"final_tidydataset.txt",col.names=TRUE,row.names=FALSE,sep="")
