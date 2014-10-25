@@ -77,8 +77,8 @@ std.names=names(std.columns.only)
 #QUESTION 2- cbinding the datasets to obtain dataset of only mean & std measurements
 combined.data.final=cbind(combined.data[,1],combined.data[,2],mean.columns.only,std.columns.only)
 
-#QUESTION 3 &4 -providing  names to all the columns of the combined dataset
-#the dataset has 81  columns, t)e 1st and 2nd column already have names - Subject and Activity
+#QUESTION 3 & 4 -providing  names to all the columns of the combined dataset
+#the dataset has 81  columns, the 1st and 2nd column already have names - Subject and Activity
 #columns 3 to 81 are the related to measurements
 names(combined.data.final)=c("Subject","Activity",mean.names[1:46],std.names[1:33])
 
